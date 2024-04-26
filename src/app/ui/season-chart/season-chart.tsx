@@ -3,7 +3,7 @@ import { Chart } from "./chart";
 import { SummaryStats } from "./summary-stats";
 import { ChangeEvent, FC, useState, useEffect  } from 'react';
 
-export function SeasonChart({year}: {year: string}) {
+export function SeasonChart({year}: {year: number}) {
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(true)
 

@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import * as md5 from "md5";
 
 export function Chart({data}: {data: any}) {
-  const ref = useRef();
+  const ref:any = useRef();
 
   function getRuns(overs: any) {
     let runs = []
@@ -15,7 +15,7 @@ export function Chart({data}: {data: any}) {
     return runs
   }
 
-  function drawLineMarker(svg, x) {
+  function drawLineMarker(svg: any, x:  number) {
     svg
       .append('line')
       .attr('x1', x)
@@ -31,7 +31,6 @@ export function Chart({data}: {data: any}) {
 
   useEffect(() => {
     console.log('render chart: ', data.length)
-    console.log('md5: ', md5(JSON.stringify(data)))
 
     d3
       .select(ref.current)
