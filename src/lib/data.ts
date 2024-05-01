@@ -56,11 +56,17 @@ export function getSeasonSummaryStats(matches: MatchData[]):InningsSummary[] {
  * Get the list of players for a season in ascending order of their names.
  */
 export function getPlayers(matches: MatchData[]):DropDownModel {
-  return [
-    {label: 'Shubman Gill', value: 'Shubman Gill'},
-    {label: 'KL Rahul', value: 'KL Rahul'},
-    {label: 'JC Butler', value: 'JC Butler'}
-  ]
+  let members = new Set()
+  for(let i = 0; i< matches.length; i++) {
+    let team = Object.values(matches[i].info.players)
+    for(const players of team) {
+      for(const individual of players) {
+        members.add(individual)
+      }
+    }
+  }
+  console.log(Array.from(members))
+  return Array.from(members)
 }
 
 export function getVenues(matches: MatchData[]):DropDownModel {
