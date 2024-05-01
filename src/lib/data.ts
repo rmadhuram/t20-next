@@ -58,8 +58,7 @@ export function getSeasonSummaryStats(matches: MatchData[]):InningsSummary[] {
 export function getPlayers(matches: MatchData[]):DropDownModel {
   return [
     {label: 'Shubman Gill', value: 'Shubman Gill'},
-    {label: 'KL Rahul', value: 'KL Rahul'},
-    {label: 'JC Buttler', value: 'JC Buttler'}
+    {label: 'KL Rahul', value: 'KL Rahul'}
   ]
 }
 
