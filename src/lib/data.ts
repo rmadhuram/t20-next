@@ -65,8 +65,13 @@ export function getPlayers(matches: MatchData[]):DropDownModel {
       }
     }
   }
-  console.log(Array.from(members))
-  return Array.from(members)
+  members = Array.from(members)
+  members = members.map(formatter)
+  function formatter(player) {
+    return {label:`${player}`, value: `${player}`}
+  }
+  console.log(members)
+  return members
 }
 
 export function getVenues(matches: MatchData[]):DropDownModel {
