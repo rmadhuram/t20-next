@@ -39,16 +39,16 @@ export function BallByBallChart({data}: {data: any}) {
       .style("padding", "5px")
       .style("position", "absolute")
 
-    let mouseover = function(d) {
+    let mouseover = (event: any, d: any) => {
       tooltip
         .style("opacity", 1)
 
-      d3.select(this)
+      d3.select(event.currentTarget)
         .style("stroke", "black")
         .style("opacity", 1)
     }
 
-    var mousemove = function(event, d) {
+    var mousemove = function(event: any, d: any) {
       const [x, y] = d3.pointer(event);
 
       tooltip
@@ -61,10 +61,10 @@ export function BallByBallChart({data}: {data: any}) {
         .style("top", (y+20) + "px")
     }
 
-    var mouseleave = function(d) {
+    var mouseleave = (event: any, d: any) => {
       tooltip
         .style("opacity", 0)
-      d3.select(this)
+      d3.select(event.currentTarget)
         .style("stroke", "none")
         .style("opacity", 0.8)
     }
