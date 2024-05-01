@@ -7,6 +7,7 @@ import { MatchData } from "@/lib/types";
 export function SeasonChart({year}: {year: number}) {
   const [data, setData] = useState<MatchData[]>([])
   const [isLoading, setLoading] = useState(true)
+  const [isFiltering, setFiltering] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -21,11 +22,23 @@ export function SeasonChart({year}: {year: number}) {
  
   if (isLoading) return <p>Loading...</p>
 
+  function onFilterChange(selectedPlayer: string, selectedVenue: string) {
+    setFiltering(true)
+    setTimeout(() => {
+      console.log(`${selectedPlayer} -- ${selectedVenue}`)
+      let newData: MatchData[] = JSON.parse(JSON.stringify(data))
+
+      setData(newData)
+      setFiltering(false)
+    }, 0)
+  }
+
   return (
     <>
-      <Filters data={data}></Filters>
-      <SummaryStats data={data}></SummaryStats>
-      <BallByBallChart data={data}></BallByBallChart>
+      <Filters data={data} callback={onFilterChange}></Filters>
+      { isFiltering ? <div>Filtering...</div> : 
+          <><SummaryStats data={data}></SummaryStats><BallByBallChart data={data}></BallByBallChart></>
+      }
     </>
   )
 }
