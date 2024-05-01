@@ -1,19 +1,10 @@
 import * as d3 from 'd3'
 import { useEffect, useRef } from "react";
-import * as md5 from "md5";
+import styles from "./ball-by-ball.module.scss";
+import { getDeliveries } from '@/lib/data';
 
-export function Chart({data}: {data: any}) {
+export function BallByBallChart({data}: {data: any}) {
   const ref:any = useRef();
-
-  function getRuns(overs: any) {
-    let runs = []
-    for (let i=0; i<overs.length; i++) {
-      for (let j=0; j<overs[i].deliveries.length; j++) {
-        runs.push(overs[i].deliveries[j])
-      }
-    }
-    return runs
-  }
 
   function drawLineMarker(svg: any, x:  number) {
     svg
@@ -37,6 +28,47 @@ export function Chart({data}: {data: any}) {
       .select("svg")
       .remove()
 
+    let tooltip = d3.select(ref.current)
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "2px")
+      .style("border-radius", "5px")
+      .style("padding", "5px")
+      .style("position", "absolute")
+
+    let mouseover = function(d) {
+      tooltip
+        .style("opacity", 1)
+
+      d3.select(this)
+        .style("stroke", "black")
+        .style("opacity", 1)
+    }
+
+    var mousemove = function(event, d) {
+      const [x, y] = d3.pointer(event);
+
+      tooltip
+        .html(`
+          <div>Batter: ${d.batter}</div>
+          <div>Bowler: ${d.bowler}</div>
+          <div>Runs: ${d.runs.total}</div>
+        `)
+        .style("left", (x+20) + "px")
+        .style("top", (y+20) + "px")
+    }
+
+    var mouseleave = function(d) {
+      tooltip
+        .style("opacity", 0)
+      d3.select(this)
+        .style("stroke", "none")
+        .style("opacity", 0.8)
+    }
+
     const svg = d3
       .select(ref.current)
       .append("svg")
@@ -50,7 +82,7 @@ export function Chart({data}: {data: any}) {
         let elem = svg.append('g').attr('id', id)
 
         let overs = data[match].innings[innings].overs
-        let runs = getRuns(overs)
+        let runs = getDeliveries(overs)
         d3.select('#' + id)
           .selectAll('rect')
           .data(runs)
@@ -76,6 +108,9 @@ export function Chart({data}: {data: any}) {
             return cx;
           })
           .attr('y', match * 6)
+          .on("mouseover", mouseover)
+          .on("mousemove", mousemove)
+          .on("mouseleave", mouseleave)
       }
     }
 
@@ -90,8 +125,10 @@ export function Chart({data}: {data: any}) {
     drawLineMarker(svg, 680 + 20*6*5 + 10)
   }, [data])
 
+  let posRelative = "position: relative";
+
   return (
-    <div className="chart" ref={ref}>
+    <div className={styles.chart} ref={ref}>
     </div>
   )
 }

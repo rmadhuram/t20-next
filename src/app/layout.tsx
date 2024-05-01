@@ -3,6 +3,7 @@ import { Roboto_Slab } from "next/font/google";
 import "./reset.css";
 import "./globals.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import { Analytics } from '@vercel/analytics/react';
 
 const roboto = Roboto_Slab({ subsets: ["latin"] });
 
@@ -18,7 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className} suppressHydrationWarning={true} >{children}</body>
+      <body className={roboto.className} suppressHydrationWarning={true} >
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

@@ -1,10 +1,11 @@
 import { Filters } from "./filters";
-import { Chart } from "./chart";
+import { BallByBallChart } from "./ball-by-ball-chart";
 import { SummaryStats } from "./summary-stats";
 import { ChangeEvent, FC, useState, useEffect  } from 'react';
+import { MatchData } from "@/lib/types";
 
 export function SeasonChart({year}: {year: number}) {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState<MatchData[]>([])
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export function SeasonChart({year}: {year: number}) {
     <>
       <Filters data={data}></Filters>
       <SummaryStats data={data}></SummaryStats>
-      <Chart data={data}></Chart>
+      <BallByBallChart data={data}></BallByBallChart>
     </>
   )
 }
