@@ -61,16 +61,12 @@ export function getPlayers(matches: MatchData[]):DropDownModel {
     let team = Object.values(matches[i].info.players)
     for(const players of team) {
       for(const individual of players) {
-        members.add(individual)
+        members.add({label:`${individual}`, value: `${individual}`})
       }
     }
   }
   members = Array.from(members)
-  members = members.map(formatter)
-  function formatter(player) {
-    return {label:`${player}`, value: `${player}`}
-  }
-  console.log(members)
+  console.log('fishy')
   return members
 }
 
