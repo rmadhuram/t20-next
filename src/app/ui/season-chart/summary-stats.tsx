@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { getSeasonSummaryStats } from "@/lib/data";
 import styles from "./summary-stats.module.scss";
 import numeral from "numeral";
+import { InningsSummary } from "@/lib/types";
 
 export function SummaryStats({data}: {data: any}) {
   const defaultSummaryStats = [
@@ -11,41 +13,10 @@ export function SummaryStats({data}: {data: any}) {
     {balls: 0, runs: 0, wickets: 0, rr: '0'},
     {balls: 0, runs: 0, wickets: 0, rr: '0'}
   ]
-  const [summaryStats, setSummaryStats] = useState(defaultSummaryStats);
+  const [summaryStats, setSummaryStats] = useState<InningsSummary[]>(defaultSummaryStats);
   
-  function getSummaryStats(matches: any):any {
-    console.log(`number of matches: ${matches.length}`)
-    let stats = [
-      {balls: 0, runs: 0, wickets: 0, rr: '0'},
-      {balls: 0, runs: 0, wickets: 0, rr: '0'},
-      {balls: 0, runs: 0, wickets: 0, rr: '0'},
-      {balls: 0, runs: 0, wickets: 0, rr: '0'},
-      {balls: 0, runs: 0, wickets: 0, rr: '0'},
-      {balls: 0, runs: 0, wickets: 0, rr: '0'}
-    ]
-    for (let match = 0; match < matches.length; match++) {
-      for (let innings = 0; innings < matches[match].innings.length; innings++) {
-        let overs = matches[match].innings[innings].overs
-        for (let i=0; i<overs.length; i++) {
-          for (let j=0; j<overs[i].deliveries.length; j++) {
-            let ballData = overs[i].deliveries[j]
-            stats[innings].balls++
-            stats[innings].runs += ballData.runs.total
-            if (ballData.wickets) {
-              stats[innings].wickets += ballData.wickets.length
-            }
-          }
-        }
-      }
-    }
-
-    stats[0].rr = numeral(stats[0].runs*6/stats[0].balls).format('0.00')
-    stats[1].rr = numeral(stats[1].runs*6/stats[1].balls).format('0.00')
-    return stats
-  }
-
   useEffect(() => {
-    setSummaryStats(getSummaryStats(data))
+    setSummaryStats(getSeasonSummaryStats(data))
   }, [data])
 
   return (
