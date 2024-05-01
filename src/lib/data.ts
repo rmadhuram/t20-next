@@ -59,7 +59,7 @@ export function getPlayers(matches: MatchData[]):DropDownModel {
   return [
     {label: 'Shubman Gill', value: 'Shubman Gill'},
     {label: 'KL Rahul', value: 'KL Rahul'},
-    {label: 'JC Buttler', value: 'JC Buttler'}
+    {label: 'JC Butler', value: 'JC Butler'}
   ]
 }
 
