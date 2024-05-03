@@ -61,14 +61,14 @@ export function getPlayers(matches: MatchData[]):DropDownModel {
     let teams = Object.values(matches[i].info.players)
     for(const players of teams) {
       for(const individual of players) {
-        playerSet.add({label:`${individual}`, value: `${individual}`})
+        playerSet.add({label:`${individual}`, value: `${individual}`});
       }
     }
   }
   playerSet = Array.from(playerSet)
   return playerSet
 }
-
+// test of commit
 export function getVenues(matches: MatchData[]):DropDownModel {
   return [
     {label: 'M Chinnaswamy Stadium, Bengaluru', value: 'M Chinnaswamy Stadium, Bengaluru'},
