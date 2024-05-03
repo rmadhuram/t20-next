@@ -8,6 +8,7 @@ export type MatchData = {
     balls_per_over: number,
     city: string,
     dates: string[]
+    players: string[]
   },
   innings: [{
     team: string,
@@ -26,3 +27,4 @@ export type DropDownModel = {
   label: string,
   value: string
 }[]
+
