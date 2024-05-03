@@ -65,7 +65,7 @@ export function getPlayers(matches: MatchData[]):DropDownModel {
       }
     }
   }
-  playerSet = Array.from(playerSet))
+  playerSet = Array.from(playerSet)
   return playerSet
 }
 
