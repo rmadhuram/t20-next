@@ -1,4 +1,4 @@
-import { DropDownModel, InningsSummary, MatchData, OverData } from "./types";
+import { DropDownItem, DropDownModel, InningsSummary, MatchData, OverData } from "./types";
 import numeral from "numeral";
 
 /**
@@ -56,7 +56,7 @@ export function getSeasonSummaryStats(matches: MatchData[]):InningsSummary[] {
  * Get the list of players for a season in ascending order of their names.
  */
 export function getPlayers(matches: MatchData[]):DropDownModel {
-  let playerSet = new Set<{label: string, value: string}>();
+  let playerSet = new Set<DropDownItem>();
   for(let i = 0; i< matches.length; i++) {
     let teams = Object.values(matches[i].info.players)
     for(const players of teams) {
@@ -65,8 +65,7 @@ export function getPlayers(matches: MatchData[]):DropDownModel {
       }
     }
   }
-  playerSet = Array.from(playerSet)
-  return playerSet
+  return Array.from(playerSet.values())
 }
 // test again
 export function getVenues(matches: MatchData[]):DropDownModel {

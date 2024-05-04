@@ -23,8 +23,10 @@ export type InningsSummary = {
   rr: string  // formatted.
 }
 
-export type DropDownModel = {
+
+export type DropDownItem = {
   label: string,
   value: string
-}[]
+}
 
+export type DropDownModel = DropDownItem[]
