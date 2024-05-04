@@ -8,6 +8,7 @@ export type MatchData = {
     balls_per_over: number,
     city: string,
     dates: string[]
+    players: string[]
   },
   innings: [{
     team: string,
@@ -22,7 +23,10 @@ export type InningsSummary = {
   rr: string  // formatted.
 }
 
-export type DropDownModel = {
+
+export type DropDownItem = {
   label: string,
   value: string
-}[]
+}
+
+export type DropDownModel = DropDownItem[]
