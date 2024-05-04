@@ -26,8 +26,8 @@ export function SeasonChart({year}: {year: number}) {
     setFiltering(true)
     setTimeout(() => {
       console.log(`${selectedPlayer} -- ${selectedVenue}`)
-      let newData: MatchData[] = JSON.parse(JSON.stringify(data))
 
+      let newData: MatchData[] = JSON.parse(JSON.stringify(data))  // deep clone.
       setData(newData)
       setFiltering(false)
     }, 0)
