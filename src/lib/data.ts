@@ -1,4 +1,4 @@
-import { DropDownModel, InningsSummary, MatchData, OverData } from "./types";
+import { DropDownItem, DropDownModel, InningsSummary, MatchData, OverData } from "./types";
 import numeral from "numeral";
 
 /**
@@ -74,7 +74,6 @@ export function getPlayers(matches: MatchData[]):DropDownModel {
   return playerSet
 }
 
-/** test */
 export function getVenues(matches: MatchData[]):DropDownModel {
   return [
     {label: 'M Chinnaswamy Stadium, Bengaluru', value: 'M Chinnaswamy Stadium, Bengaluru'},
