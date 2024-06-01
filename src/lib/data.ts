@@ -70,7 +70,7 @@ export function getPlayers(matches: MatchData[]):DropDownModel {
 // test again
 export function getVenues(matches: MatchData[]):DropDownModel {
   return [
-    {label: 'M Chinnaswam Stadium, Bengaluru', value: 'M Chinnaswamy Stadium, Bengaluru'},
+    {label: 'M Chinnaswamy Stadium, Bengaluru', value: 'M Chinnaswamy Stadium, Bengaluru'},
     {label: 'MA Chidambaram Stadium, Chepauk, Chennai', value: 'MA Chidambaram Stadium, Chepauk, Chennai'}
   ]
 }
