@@ -1,4 +1,4 @@
-import { DropDownModel, InningsSummary, MatchData, OverData } from "./types";
+import { DropDownItem, DropDownModel, InningsSummary, MatchData, OverData } from "./types";
 import numeral from "numeral";
 
 /**
@@ -56,11 +56,22 @@ export function getSeasonSummaryStats(matches: MatchData[]):InningsSummary[] {
  * Get the list of players for a season in ascending order of their names.
  */
 export function getPlayers(matches: MatchData[]):DropDownModel {
-  return [
-    {label: 'Shubman Gill', value: 'Shubman Gill'},
-    {label: 'KL Rahul', value: 'KL Rahul'},
-    {label: 'JC Butler', value: 'JC Butler'}
-  ]
+  let playerSet = new Set();
+  for(let i = 0; i< matches.length; i++) {
+    let teams = Object.values(matches[i].info.players)
+    for(const players of teams) {
+      for(const individual of players) {
+        playerSet.add(individual);
+      }
+    }
+  }
+  console.log(playerSet)
+  playerSet = Array.from(playerSet)
+  playerSet = playerSet.map(formatter)
+  function formatter(player) {
+    return {label:`${player}`, value: `${player}`}
+  }
+  return playerSet
 }
 
 export function getVenues(matches: MatchData[]):DropDownModel {
@@ -69,3 +80,5 @@ export function getVenues(matches: MatchData[]):DropDownModel {
     {label: 'MA Chidambaram Stadium, Chepauk, Chennai', value: 'MA Chidambaram Stadium, Chepauk, Chennai'}
   ]
 }
+
+
