@@ -7,7 +7,7 @@ import { SeasonChart } from '@/app/ui/season-chart/season-chart';
 
 export default function Home() {
   let years = []
-  for (let year = 2023; year >= 2008; year--) {
+  for (let year = 2024; year >= 2008; year--) {
     years.push({label: year, value: year})
   }
   

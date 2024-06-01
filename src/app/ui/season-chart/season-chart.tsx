@@ -23,7 +23,6 @@ export function SeasonChart({year}: {year: number}) {
 
   return (
     <>
-      <Filters data={data}></Filters>
       <SummaryStats data={data}></SummaryStats>
       <BallByBallChart data={data}></BallByBallChart>
     </>
