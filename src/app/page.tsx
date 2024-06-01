@@ -18,7 +18,7 @@ export default function Home() {
         <Dropdown value={selectedYear} onChange={(e) => setSelectedYear(e.value)} options={years} optionLabel="label" 
           placeholder="Select Year" className="w-full md:w-14rem" />
       </h1>
-      <p>The following graph visualizes the entire IPL 2023 season!</p>
+      <p>The following graph visualizes the entire IPL season!</p>
       <SeasonChart year={selectedYear}></SeasonChart>
     </div>
   );
