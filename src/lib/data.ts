@@ -56,22 +56,20 @@ export function getSeasonSummaryStats(matches: MatchData[]):InningsSummary[] {
  * Get the list of players for a season in ascending order of their names.
  */
 export function getPlayers(matches: MatchData[]):DropDownModel {
-  let playerSet = new Set();
-  for(let i = 0; i< matches.length; i++) {
+  let playerSet = new Set<string>();
+  for (let i = 0; i< matches.length; i++) {
     let teams = Object.values(matches[i].info.players)
-    for(const players of teams) {
-      for(const individual of players) {
+    for (const players of teams) {
+      for (const individual of players) {
         playerSet.add(individual);
       }
     }
   }
-  console.log(playerSet)
-  playerSet = Array.from(playerSet)
-  playerSet = playerSet.map(formatter)
-  function formatter(player) {
+  let players = Array.from(playerSet).map(player => {
     return {label:`${player}`, value: `${player}`}
-  }
-  return playerSet
+  })
+  
+  return players
 }
 
 export function getVenues(matches: MatchData[]):DropDownModel {
