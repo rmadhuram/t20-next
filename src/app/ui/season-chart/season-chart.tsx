@@ -35,7 +35,6 @@ export function SeasonChart({year}: {year: number}) {
 
   return (
     <>
-      <Filters data={data} callback={onFilterChange}></Filters>
       { isFiltering ? <div>Filtering...</div> : 
           <><SummaryStats data={data}></SummaryStats><BallByBallChart data={data}></BallByBallChart></>
       }
