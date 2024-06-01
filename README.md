@@ -45,7 +45,8 @@ lowest
 score distribution
 points table & ascencion
 highest scoring streak
-# of sixes by a player - moving histogram.
+highest wicket streaks
+num of sixes by a player - moving histogram.
 
 Overall
 -------
