@@ -11,7 +11,7 @@ export default function Home() {
     years.push({label: year, value: year})
   }
   
-  const [selectedYear, setSelectedYear] = useState(2023);
+  const [selectedYear, setSelectedYear] = useState(2024);
   return (
     <div className={styles.container}>
       <h1>🏏 IPL Season 
