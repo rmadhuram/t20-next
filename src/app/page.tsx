@@ -14,12 +14,15 @@ export default function Home() {
   const [selectedYear, setSelectedYear] = useState(2024);
   return (
     <div className={styles.container}>
-      <h1>🏏 IPL Season 
+      <div className="header">
+        <h1>🏏 IPL Season </h1>
         <Dropdown value={selectedYear} onChange={(e) => setSelectedYear(e.value)} options={years} optionLabel="label" 
           placeholder="Select Year" className="w-full md:w-14rem" />
-      </h1>
+      </div>
+      
       <p>The following graph visualizes the entire IPL season!</p>
       <SeasonChart year={selectedYear}></SeasonChart>
+      <div className="footer">Developed with ❤️ by <a href="https://www.linkedin.com/in/rmadhuram/" target="_win">Raj Madhuram</a> and <a href="https://www.linkedin.com/in/john-calvin-b30953270/" target="_win">John Calvin</a></div>
     </div>
   );
 }
